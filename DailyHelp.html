@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#061b3b">
+<link rel="manifest" href="manifest.json">
+<title>Daily Help</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#031126;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.app{min-height:100vh;max-width:480px;margin:auto;background:radial-gradient(circle at 50% 30%,#0d3d70 0,#061b3b 42%,#020b19 100%);padding:14px 14px 90px;overflow:hidden}
+header{display:flex;align-items:center;justify-content:space-between;padding:4px 2px 12px}
+.iconbtn{width:44px;height:44px;border:1px solid #557ba6;border-radius:50%;background:#09254a;color:#fff;font-size:24px}
+.logo{text-align:center;line-height:1}.logo .title{font-size:34px;font-weight:800;letter-spacing:-1px}.logo .sub{font-size:13px;color:#d9e8ff;margin-top:6px}.crown{font-size:20px;vertical-align:top}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.card{border:1px solid #2e76ae;background:linear-gradient(145deg,#0b315e,#09264a);border-radius:18px;padding:14px;box-shadow:0 8px 25px #0004}.wide{grid-column:span 2}
+.weather{min-height:158px}.weather .temp{font-size:32px;font-weight:800}.muted{color:#b9cee7;font-size:13px}.arrow{float:right;font-size:24px;color:#cfe6ff}
+.hero{margin-top:10px;min-height:320px;border-radius:22px;position:relative;overflow:hidden;background:
+radial-gradient(circle at 50% 46%,#38b9ff33 0 14%,transparent 30%),
+radial-gradient(circle at 50% 55%,#0878d833,transparent 46%),
+linear-gradient(180deg,#0b315b,#052044 70%,#06152b);border:1px solid #2f6f9f}
+.hero:before{content:"";position:absolute;inset:0;background:repeating-radial-gradient(ellipse at 50% 55%,transparent 0 58px,#4ac5ff33 60px 61px,transparent 63px 95px);opacity:.7}
+.earth{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:155px;height:155px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#a7ecff,#0788d8 28%,#063f8f 63%,#011b49 100%);box-shadow:0 0 35px #39baff,0 0 80px #0079ff55}
+.earth:after{content:"";position:absolute;inset:22px 30px 45px 15px;border-radius:45% 55% 40% 60%;background:#8ad24d;box-shadow:35px 28px 0 -8px #65b63e,-18px 55px 0 -14px #9ad84f}
+.hand{position:absolute;left:8%;right:8%;bottom:24px;height:82px;border-radius:50% 50% 20px 20px;background:linear-gradient(180deg,#f6b18e,#d9846d);transform:rotate(-3deg);box-shadow:0 -5px 20px #0005}
+.tagline{position:absolute;right:18px;bottom:112px;font-size:18px;font-style:italic;text-align:right;transform:rotate(-4deg)}
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}.tile{min-height:125px;border-radius:17px;padding:10px 7px;text-align:center;border:1px solid #3b76a8;background:#0a315c}.tile .emoji{font-size:29px}.tile b{display:block;margin:5px 0 3px}.tile small{color:#c3d6eb;font-size:10px}
+.progress{display:flex;gap:12px;align-items:center;margin-top:10px}.star{font-size:40px}.bar{height:10px;background:#09284b;border-radius:10px;overflow:hidden}.fill{height:100%;width:55%;background:#f4c33b;border-radius:10px}.reward{min-width:130px}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(480px,100%);height:76px;background:#061a35ee;backdrop-filter:blur(10px);border-top:1px solid #315478;display:flex;justify-content:space-around;z-index:5}.navbtn{flex:1;border:0;background:none;color:#b7c9df;font-size:12px}.navbtn.active{color:#22c7ff}.navbtn span{display:block;font-size:26px;margin-bottom:2px}
+.page{display:none}.page.active{display:block}.list{display:grid;gap:10px;margin-top:12px}.item{padding:15px;border-radius:16px;background:#0a2b50;border:1px solid #2d5e89}.btn{border:0;border-radius:12px;padding:11px 14px;background:#20aef0;color:white;font-weight:700}.option{display:block;width:100%;margin:8px 0;text-align:left;background:#092d52;color:#fff;border:1px solid #3c6d99}.notice{padding:12px;border-radius:12px;background:#17365a;color:#dcecff;font-size:13px}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+<button class="iconbtn" onclick="show('menu')">☰</button>
+<div class="logo"><div class="title">🌍 <span class="crown">♛</span> Daily Help</div><div class="sub">Har din ki zaroorat, ek jagah.</div></div>
+<button class="iconbtn" onclick="show('profile')">♙</button>
+</header>
+
+<main id="home" class="page active">
+<section class="grid">
+<div class="card weather"><div style="font-size:28px">🌤️ <span class="temp">28°C</span></div><b>New Delhi</b><div class="muted">Partly Cloudy</div><div class="muted">H: 32° · L: 22°</div><div class="arrow">›</div></div>
+<div class="card" onclick="show('news')"><div style="font-size:22px">🌐 📰</div><b>World News</b><div class="muted">Top stories from global & India</div><div class="arrow">›</div></div>
+</section>
+<div class="hero"><div class="earth"></div><div class="hand"></div><div class="tagline">Aapki duniya<br>ab aapke haath<br>mein! ♡</div></div>
+<section class="tiles">
+<div class="tile" onclick="show('weather')"><div class="emoji">🌤️</div><b>Weather</b><small>Live · 7 Days · Alerts ›</small></div>
+<div class="tile" onclick="show('news')"><div class="emoji">📰</div><b>World News</b><small>India & Global ›</small></div>
+<div class="tile" onclick="show('alerts')"><div class="emoji">🚨</div><b>Alerts</b><small>Important Updates ›</small></div>
+<div class="tile" onclick="show('tips')"><div class="emoji">💡</div><b>Daily Tips</b><small>Health · Lifestyle · More ›</small></div>
+<div class="tile" onclick="show('quiz')"><div class="emoji">🎮</div><b>Daily Quiz</b><small>Play · Learn · Earn ›</small></div>
+</section>
+<section class="card progress"><div class="star">⭐</div><div style="flex:1"><div>Your Points <b>🪙 450</b></div><div style="margin:4px 0">Level 3</div><div class="bar"><div class="fill"></div></div><div class="muted">550 / 1000</div></div><div class="card reward" onclick="show('rewards')">🎁 <b>Daily Reward</b><div class="muted">Claim Now ›</div></div></section>
+</main>
+
+<section id="weather" class="page"><div class="card"><h2>🌤️ Weather</h2><div class="temp">28°C</div><p>New Delhi · Partly Cloudy</p><div class="list"><div class="item">Today — 28° / 22°</div><div class="item">Tomorrow — 30° / 23°</div><div class="item">Day 3 — 31° / 24°</div><div class="item">Day 4 — 29° / 22°</div></div></div></section>
+<section id="news" class="page"><div class="card"><h2>📰 World News</h2><div class="list"><div class="item"><b>India</b><p>Top national stories and useful updates.</p></div><div class="item"><b>World</b><p>Major global headlines in a simple format.</p></div><div class="item"><b>Technology</b><p>New apps, gadgets and digital trends.</p></div></div></div></section>
+<section id="alerts" class="page"><div class="card"><h2>🚨 Alerts</h2><div class="notice">Important updates will appear here. Notifications can be enabled in Settings.</div></div></section>
+<section id="tips" class="page"><div class="card"><h2>💡 Daily Tips</h2><div class="list"><div class="item">📚 Study tip — break big tasks into small steps.</div><div class="item">💧 Lifestyle — keep water nearby during the day.</div><div class="item">🔐 Safety — never share passwords or OTPs.</div></div></div></section>
+<section id="quiz" class="page"><div class="card"><h2>🎮 Daily Quiz</h2><p id="q">What is the capital of India?</p><button class="btn option" onclick="answer(true)">New Delhi</button><button class="btn option" onclick="answer(false)">Mumbai</button><button class="btn option" onclick="answer(false)">Kolkata</button><p id="result" class="muted"></p></div></section>
+<section id="rewards" class="page"><div class="card"><h2>🎁 Daily Reward</h2><p>Claim your daily 50 points.</p><button class="btn" onclick="claim()">Claim Reward</button><p id="claimmsg" class="muted"></p></div></section>
+<section id="menu" class="page"><div class="card"><h2>☰ Menu</h2><div class="list"><div class="item" onclick="show('home')">🏠 Home</div><div class="item" onclick="show('tips')">💡 Tips</div><div class="item" onclick="show('settings')">⚙️ Settings</div></div></div></section>
+<section id="profile" class="page"><div class="card"><h2>♙ My Profile</h2><p>Welcome to Daily Help.</p><div class="item">⭐ Level 3 · 450 points</div></div></section>
+<section id="settings" class="page"><div class="card"><h2>⚙️ Settings</h2><div class="list"><div class="item">🔔 Notifications <button class="btn" onclick="this.textContent=this.textContent==='On'?'Off':'On'">On</button></div><div class="item">🌙 Dark mode — enabled</div><div class="item">ℹ️ About Daily Help — v1.0</div></div></div></section>
+</div>
+<nav>
+<button class="navbtn active" onclick="show('home',this)"><span>⌂</span>Home</button>
+<button class="navbtn" onclick="show('news',this)"><span>◎</span>Explore</button>
+<button class="navbtn" onclick="show('rewards',this)"><span>★</span>Rewards</button>
+<button class="navbtn" onclick="show('profile',this)"><span>▣</span>My Info</button>
+<button class="navbtn" onclick="show('settings',this)"><span>⚙</span>Settings</button>
+</nav>
+<script>
+function show(id,btn){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));let p=document.getElementById(id);if(p)p.classList.add('active');document.querySelectorAll('.navbtn').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');window.scrollTo(0,0)}
+function answer(ok){document.getElementById('result').textContent=ok?'✅ Correct! +10 points':'❌ Try again!'}
+function claim(){document.getElementById('claimmsg').textContent='🎉 Reward claimed! +50 points';}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}
+</script>
+</body></html>
