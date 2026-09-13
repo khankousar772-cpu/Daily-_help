@@ -1,0 +1,9 @@
+{
+  "name": "Daily Help",
+  "short_name": "Daily Help",
+  "start_url": "/Daily-_help/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "description": "Daily help har din ki zarurat ik jagah"
+}
